@@ -7,25 +7,25 @@ import scala.concurrent.duration._
 class soap extends Simulation {
 
   val httpProtocol = http
-    	.baseUrl("https://www.jamef.com.br/") 
+    	.baseUrl("https://graphical.weather.gov:443/xml/SOAP_server") 
 
 val headers = Map(
 	"Accept-Encoding" -> "gzip,deflate",
 	"Content-Type" -> "text/xml;charset=UTF-8",
-	"SOAPAction" -> "http://www.jamef.com.br/JAMW0520_01",
-	"Content-Length" -> "1134",
-	"Host" -> "www.jamef.com.br",
+	"SOAPAction" -> "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListCityNames",
+	"Content-Length" -> "519",
+	"Host" -> "graphical.weather.gov:443",
 	"Connection" -> "Keep-Alive",
 	"User-Agent"-> "Apache-HttpClient/4.1.1 (java 1.5)"
 )
 
-  val scn = scenario("Consulta Frete")
-    	.exec(http("SOAP")
-      	.post("/JAMW0520.apw")
+  val scn = scenario("getLatLon")
+    	.exec(http("getLatLon")
+      	.post("/ndfdXMLserver.php")
       	.headers(headers)
-	.body(RawFileBody("consultaFrete.txt"))
+	.body(RawFileBody("getLatLon.txt"))
 
 )
 
-  setUp(scn.inject(atOnceUsers(1500)).protocols(httpProtocol))
+  setUp(scn.inject(atOnceUsers(15)).protocols(httpProtocol))
 }
