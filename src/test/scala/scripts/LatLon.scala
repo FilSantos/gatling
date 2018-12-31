@@ -27,5 +27,5 @@ val headers = Map(
 
 )
 
-  setUp(scn.inject(atOnceUsers(1500)).protocols(httpProtocol))
+  setUp(scn.inject(atOnceUsers(100)).protocols(httpProtocol))
 }
