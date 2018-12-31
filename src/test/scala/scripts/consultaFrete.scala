@@ -23,7 +23,7 @@ val headers = Map(
     	.exec(http("SOAP")
       	.post("/JAMW0520.apw")
       	.headers(headers)
-	.body(RawFileBody("consultafreteProtheus.txt"))
+	.body(RawFileBody("consultaFrete.txt"))
 
 )
 
