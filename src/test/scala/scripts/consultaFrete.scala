@@ -7,7 +7,7 @@ import scala.concurrent.duration._
 class soap extends Simulation {
 
   val httpProtocol = http
-    	.baseUrl("https://www.jamef.com.br/sit") 
+    	.baseUrl("https://www.jamef.com.br/") 
 
 val headers = Map(
 	"Accept-Encoding" -> "gzip,deflate",
